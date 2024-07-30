@@ -1,0 +1,31 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<div class="col-4 mb-4 py-3 px-3 mx-auto border border-dark-subtle border-1 rounded-4">
+    <h2 class="text-center pb-2">Registra un curso</h2>
+      <form method="POST" action="{% url 'cursos' %}"> {% csrf_token %}
+        <div class="mb-3">
+            <label for="nombreCurso" class="form-label">Nombre del curso</label>
+            <input type="text" class="form-control" id="nombreCurso" name="nombreCurso" placeholder="Ingrese el nombre de un curso">
+          </div>
+        <div class="mb-3">
+          <label class="pb-3" for="nivelCurso">Nivel</label>
+          <select class="form-select" id="nivelCurso" name="nivelCurso" aria-label="Default select example">
+            <option value="1" selected >Básico</option>
+            <option value="2">Intermedio</option>
+            <option value="3">Avanzado</option>
+          </select>
+        </div>
+        <div class="mb-3">
+            <label for="fechaCurso" class="form-label">Fecha de inicio</label>
+            <input type="date" class="form-control" name="fechaCurso" id="fechaCurso">
+          </div>
+        <div class="col-12 align-self-center mx-auto py-2">
+            <button type="submit" class="btn btn-primary col-4 offset-4">Enviar</button>
+        </div>
+      </form>
+    </div>
+{% endblock %}

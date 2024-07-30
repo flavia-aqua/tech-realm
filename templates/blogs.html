@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+<div class="col-4 mb-4 py-3 px-3 mx-auto border border-dark-subtle border-1 rounded-4">
+  <h2 class="text-center pb-2">Registra un Blog</h2>
+    <form method="POST" action="{% url 'blogs' %}"> {% csrf_token %}
+      <div class="mb-3">
+          <label for="nombreBlog" class="form-label">Nombre del blog</label>
+          <input type="text" class="form-control" id="nombreBlog" name="nombreBlog" placeholder="Ingrese el nombre de un blog">
+        </div>
+      <div class="mb-3">
+        <label class="pb-3" for="temaBlog">Nivel</label>
+        <select class="form-select" id="temaBlog" name="temaBlog" aria-label="Default select example">
+          <option value="1" selected >GTM</option>
+          <option value="2">GA4</option>
+          <option value="3">BQ</option>
+        </select>
+      </div>
+      <div class="col-12 align-self-center mx-auto py-2">
+          <button type="submit" class="btn btn-primary col-4 offset-4">Enviar</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

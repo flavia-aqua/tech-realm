@@ -1,0 +1,83 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+<div class="col-4 mb-4 py-3 px-3 mx-auto border border-dark-subtle border-1 rounded-4">
+    <h2 class="text-center pb-2">Busca un curso</h2>
+      <form method="POST" action="{% url 'inicio' %}"> {% csrf_token %}
+        <div class="mb-3">
+            <label for="nombreCurso" class="form-label">Nombre del curso</label>
+            <input type="text" class="form-control" id="nombreCurso" name="nombreCurso" placeholder="Ingrese el nombre de un curso">
+          </div>
+        <div class="col-12 align-self-center mx-auto py-2">
+            <button type="submit" class="btn btn-primary col-4 offset-4">Buscar</button>
+        </div>
+      </form>
+    </div>
+{% if flag == False %}
+<div class="col-8 mb-4 py-3 px-3 mx-auto">
+<h3 class="text-center pb-3">Lista de Cursos</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Curso</th>
+        <th scope="col">Nivel</th>
+        <th scope="col">Fecha de Inicio</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for curso in cursos %}
+      <tr>
+        <th scope="row">{{ forloop.counter0|add:1 }}</th>
+        <td>{{curso.nombre }}</td>
+        <td>{% if curso.nivel == "1" %}
+            Básico
+        {% elif curso.nivel == "2" %}
+            Intermedio
+        {% elif curso.nivel == "3" %}
+            Avanzado
+        {% else %}
+            Desconocido
+        {% endif %}</td>
+        <td>{{curso.fecha }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="col-8 mb-4 py-3 px-3 mx-auto">
+    <h3 class="text-center pb-3">Cursos encontrados</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Fecha de Inicio</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for curso in cursos %}
+          <tr>
+            <th scope="row">{{ forloop.counter0|add:1 }}</th>
+            <td>{{curso.nombre }}</td>
+            <td>{% if curso.nivel == "1" %}
+                Básico
+            {% elif curso.nivel == "2" %}
+                Intermedio
+            {% elif curso.nivel == "3" %}
+                Avanzado
+            {% else %}
+                Desconocido
+            {% endif %}</td>
+            <td>{{curso.fecha }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+{% endblock %}

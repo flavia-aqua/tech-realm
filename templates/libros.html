@@ -1,0 +1,30 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+<div class="col-4 mb-4 py-3 px-3 mx-auto border border-dark-subtle border-1 rounded-4">
+  <h2 class="text-center pb-2">Registra un Libro</h2>
+    <form method="POST" action="{% url 'libros' %}"> {% csrf_token %}
+      <div class="mb-3">
+          <label for="nombreLibro" class="form-label">Nombre del libro</label>
+          <input type="text" class="form-control" id="nombreLibro" name="nombreLibro" placeholder="Ingrese el nombre de un libro">
+        </div>
+      <div class="mb-3">
+        <label class="pb-3" for="temaLibro">Tema</label>
+        <select class="form-select" id="temaLibro" name="temaLibro" aria-label="Default select example">
+          <option value="1" selected >GTM</option>
+          <option value="2">GA4</option>
+          <option value="3">BQ</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="codigoLibro" class="form-label">Código</label>
+        <input type="number" class="form-control" id="codigoLibro" name="codigoLibro" placeholder="Ingrese el código del libro">
+      </div>
+      <div class="col-12 align-self-center mx-auto py-2">
+          <button type="submit" class="btn btn-primary col-4 offset-4">Enviar</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
